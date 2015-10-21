@@ -1,2 +1,2 @@
-# hello ci!
+# Hello CI!
 hello ci test

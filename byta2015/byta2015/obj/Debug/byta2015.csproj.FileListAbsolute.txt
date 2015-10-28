@@ -1,0 +1,6 @@
+D:\test project\byta2015\byta2015\bin\Debug\byta2015.exe.config
+D:\test project\byta2015\byta2015\bin\Debug\byta2015.exe
+D:\test project\byta2015\byta2015\bin\Debug\byta2015.pdb
+D:\test project\byta2015\byta2015\obj\Debug\byta2015.csprojResolveAssemblyReference.cache
+D:\test project\byta2015\byta2015\obj\Debug\byta2015.exe
+D:\test project\byta2015\byta2015\obj\Debug\byta2015.pdb

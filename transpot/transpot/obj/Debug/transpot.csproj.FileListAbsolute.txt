@@ -1,0 +1,6 @@
+D:\test project\transpot\transpot\bin\Debug\transpot.exe.config
+D:\test project\transpot\transpot\obj\Debug\transpot.csprojResolveAssemblyReference.cache
+D:\test project\transpot\transpot\bin\Debug\transpot.exe
+D:\test project\transpot\transpot\bin\Debug\transpot.pdb
+D:\test project\transpot\transpot\obj\Debug\transpot.exe
+D:\test project\transpot\transpot\obj\Debug\transpot.pdb

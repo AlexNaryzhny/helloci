@@ -1,4 +1,4 @@
 # Hello CI!
 
-byta - calculator
+byta - calculator; 
 transpot - transpot matrix

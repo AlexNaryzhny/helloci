@@ -16,10 +16,6 @@ namespace HomeTask2
         public int expense;       //расход
         public int price;         //стоимость
 
-        public override string ToString()
-        {
-            return "Автомобиль: " + model + "\n" + "Кузов: " + form + "\n" + "Год выпуска: " + year + "\n" + "Цвет: " + color + "\n" + "Расход: " + expense + "\n" + "Стоимость: " + price;
-        }
     }
 
 

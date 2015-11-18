@@ -14,63 +14,11 @@ namespace HomeTask2
         //Провести сортировку автомобилей парка по расходу топлива. 
         //Найти автомобиль в компании, соответствующий заданному диапазону параметров.
 
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Список автомобилей:\n");
 
-            #region
-
-            //try
-            //{
-            //    var p1 = new Car() { model = "LADA", form= "седан", year = 2015, color = "БАКЛАЖАН", expense = 10, price = 5000};
-            //    Console.WriteLine(p1.ToString());
-            //    Console.WriteLine();
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-
-            //try
-            //{
-            //    var p1 = new Car() { model = "BMW", form = "touring", year = 2010, color = "BLACK", expense = 12, price = 15000};
-            //    Console.WriteLine(p1.ToString());
-            //    Console.WriteLine();
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-
-            //try
-            //{
-            //    var p1 = new Car() { model = "VW", form = "автобус", year = 2001, color = "СЕРЕБРО", expense = 8, price = 8000};
-            //    Console.WriteLine(p1.ToString());
-            //    Console.WriteLine();
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-
-            //try
-            //{
-            //    var p1 = new Car() { model = "Ferrari", form = "купе", year = 1990, color = "красный", expense = 20, price = 500000 };
-            //    Console.WriteLine(p1.ToString());
-            //    Console.WriteLine();
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-
-            #endregion
-
-            Car[] auto = new Car[]
+            var auto = new[]
             {
                 new Car {model = "LADA", form = "седан", year = 2015, color = "БАКЛАЖАН", expense = 10, price = 5000},
                 new Car {model = "BMW", form = "touring", year = 2010, color = "BLACK", expense = 12, price = 15000},

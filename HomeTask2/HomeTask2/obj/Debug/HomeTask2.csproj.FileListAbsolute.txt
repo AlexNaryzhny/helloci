@@ -4,3 +4,9 @@ D:\test project\HomeTask2\HomeTask2\bin\Debug\HomeTask2.exe
 D:\test project\HomeTask2\HomeTask2\bin\Debug\HomeTask2.pdb
 D:\test project\HomeTask2\HomeTask2\obj\Debug\HomeTask2.exe
 D:\test project\HomeTask2\HomeTask2\obj\Debug\HomeTask2.pdb
+D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.exe.config
+D:\helloci\HomeTask2\HomeTask2\obj\Debug\HomeTask2.exe
+D:\helloci\HomeTask2\HomeTask2\obj\Debug\HomeTask2.pdb
+D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.exe
+D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.pdb
+D:\helloci\HomeTask2\HomeTask2\obj\Debug\HomeTask2.csprojResolveAssemblyReference.cache

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{0C6C2EEE-C703-400C-A8D5-22D12699861A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeTask2", "HomeTask2\HomeTask2.csproj", "{E4B35C84-2D31-4526-A4CF-BBFCE5D40522}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C6C2EEE-C703-400C-A8D5-22D12699861A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C6C2EEE-C703-400C-A8D5-22D12699861A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C6C2EEE-C703-400C-A8D5-22D12699861A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C6C2EEE-C703-400C-A8D5-22D12699861A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4B35C84-2D31-4526-A4CF-BBFCE5D40522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4B35C84-2D31-4526-A4CF-BBFCE5D40522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4B35C84-2D31-4526-A4CF-BBFCE5D40522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4B35C84-2D31-4526-A4CF-BBFCE5D40522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

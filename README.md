@@ -1,2 +1,4 @@
 # Hello CI!
-hello ci test
+
+byta - calculator; 
+transpot - transpot matrix

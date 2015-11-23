@@ -42,8 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
+    <Compile Include="middleCar.cs" />
+    <Compile Include="minibus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="smallCar.cs" />
+    <Compile Include="truck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

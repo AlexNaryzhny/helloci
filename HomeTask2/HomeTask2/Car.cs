@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    class Car : Taxopark
+    class Car 
     {
         public string model;      //автомобиль
         public string form;       //кузов

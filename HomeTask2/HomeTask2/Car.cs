@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    class Car 
+    public class Car
     {
-        public string model;      //автомобиль
-        public string form;       //кузов
+        public string model;
         public int year;          //год 
-        public string color;      // цвет
         public int expense;       //расход
         public int price;         //стоимость
 
+        public override string ToString()
+        {
+            return "The car: " + model +", year: "+ year +", expense: "+ expense +" l/km, price: " + price + "$";
+        }
     }
-
 
 
 }

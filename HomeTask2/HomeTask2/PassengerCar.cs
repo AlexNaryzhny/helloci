@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    class Minibus : PassengerCar
+    class PassengerCar : Car
     {
-
+        public int Countofpassangers;
     }
 }

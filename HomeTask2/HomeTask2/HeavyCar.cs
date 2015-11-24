@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    class Truck : Car
+    class HeavyCar : Car
     {
-        public int gruzopodemnost;
+        public int Gruzopodemnost;
     }
 }

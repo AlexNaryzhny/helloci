@@ -10,15 +10,13 @@ namespace HomeTask2
     public class Car
     {
         public string model;
-        public int year;          //год 
         public int expense;       //расход
         public int price;         //стоимость
+        public string fuel;
 
         public override string ToString()
         {
-            return "The car: " + model +", year: "+ year +", expense: "+ expense +" l/km, price: " + price + "$";
+            return "The car: " + model +", fuel: "+fuel+", expense: "+ expense +" l/km, price: " + price + "$";
         }
     }
-
-
 }

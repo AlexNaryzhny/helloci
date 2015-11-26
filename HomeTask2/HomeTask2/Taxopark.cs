@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -33,10 +34,19 @@ namespace HomeTask2
 
         private static void Main()
         {
-            Console.WriteLine("To add a new car enter 1, to order a car enter 2, to see all cars in Taxopark enter 3:");
-            int ch = Convert.ToInt32(Console.ReadLine());
-            List<Car> carList = new List<Car>();
+            //List<SimpleCar> carList = new SimpleCar().GenerateCarsList();
+            List<Car.ICar> cars = new List<Car.ICar>();
+            List<Bus> busList = new Bus().GenerateBusList();
+            List<HeavyCar> truckList = new HeavyCar().GenerateTrucksList();
 
+            Car.ICar newCar = null;
+
+            start:
+            Console.WriteLine("*************************************************************************************************");
+            Console.WriteLine();
+            Console.WriteLine("To add a new car enter 1, to order a car enter 2, to see all cars in Taxopark enter 3, to Exit 4:");
+            int ch = Convert.ToInt32(Console.ReadLine());
+            
             switch (ch)
             {
                 case 1:
@@ -45,88 +55,87 @@ namespace HomeTask2
                     switch (nc)
                     {
                         case 1:
+                            #region Console
                             Console.WriteLine("Enter parameters for the new Simple Car:");
                             Console.WriteLine("model: ");
-                            string Sname = Convert.ToString(Console.ReadLine());
+                            string sname = Convert.ToString(Console.ReadLine());
                             Console.WriteLine("how many doors: ");
-                            double Sdoors = Convert.ToDouble(Console.ReadLine());
+                            double sdoors = Convert.ToDouble(Console.ReadLine());
                             Console.WriteLine("fuel: ");
-                            string Stank = Convert.ToString(Console.ReadLine());
+                            string stank = Convert.ToString(Console.ReadLine());
                             Console.WriteLine("fuel expense per km: ");
-                            int SfuelExpense = Convert.ToInt32(Console.ReadLine());
+                            int sfuelExpense = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("price: ");
-                            int StotalPrice = Convert.ToInt32(Console.ReadLine());
-                            //carList.Add(SimpleCar.AddNewCar(Sname, Stank, StotalPrice, SfuelExpense));
+                            int stotalPrice = Convert.ToInt32(Console.ReadLine());
+                            #endregion
 
-                            SimpleCar sc = new SimpleCar(Sdoors, Sname, Stank, SfuelExpense, StotalPrice);
-                            carList.Add(sc);
+                            newCar = new SimpleCar(sdoors, sname, stank, sfuelExpense, stotalPrice);
+                            Console.WriteLine("Next car will be added: " + newCar);
+                            
+
                             break;
                         case 2:
+                            #region Console
                             Console.WriteLine("Enter parameters for the new Bus:");
                             Console.WriteLine("model: ");
-                            string Bname = Convert.ToString(Console.ReadLine());
+                            string bname = Convert.ToString(Console.ReadLine());
                             Console.WriteLine("how many passenger seats: ");
-                            int Bpassengers = Convert.ToInt32(Console.ReadLine());
+                            int bpassengers = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("fuel: ");
-                            string Btank = Convert.ToString(Console.ReadLine());
+                            string btank = Convert.ToString(Console.ReadLine());
                             Console.WriteLine("fuel expense per km: ");
-                            int BfuelExpense = Convert.ToInt32(Console.ReadLine());
+                            int bfuelExpense = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("price: ");
-                            int BtotalPrice = Convert.ToInt32(Console.ReadLine());
-                            //carList.Add(SimpleCar.AddNewCar(name, tank, totalPrice, fuelExpense));
-
-                            Bus bc = new Bus(Bpassengers,Bname,Btank,BtotalPrice,BfuelExpense);
-                            carList.Add(bc);
+                            int btotalPrice = Convert.ToInt32(Console.ReadLine());
+                            #endregion
+                            var b = new Bus().AddNewBus(bpassengers, bname, btank, bfuelExpense, btotalPrice);
+                            Console.WriteLine("Next bus will be added: " + b);
+                            busList.Add(b);
                             break;
                         case 3:
+                            #region Console
                             Console.WriteLine("Enter parameters for the new Heavy Car:");
                             Console.WriteLine("model: ");
-                            string Hname = Convert.ToString(Console.ReadLine());
+                            string hname = Convert.ToString(Console.ReadLine());
                             Console.WriteLine("for what weight: ");
-                            int Hweight = Convert.ToInt32(Console.ReadLine());
+                            int hweight = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("fuel: ");
-                            string Htank = Convert.ToString(Console.ReadLine());
+                            string htank = Convert.ToString(Console.ReadLine());
                             Console.WriteLine("fuel expense per km: ");
-                            int HfuelExpense = Convert.ToInt32(Console.ReadLine());
+                            int hfuelExpense = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("price: ");
-                            int HtotalPrice = Convert.ToInt32(Console.ReadLine());
-                            //carList.Add(SimpleCar.AddNewCar(name, tank, totalPrice, fuelExpense));
-
-                            HeavyCar hc = new HeavyCar(Hweight, Hname,Htank,HtotalPrice,HfuelExpense);
-                            carList.Add(hc);
+                            int htotalPrice = Convert.ToInt32(Console.ReadLine());
+                            #endregion
+                            var hc = new HeavyCar().AddNewTruck(hweight, hname, htank, hfuelExpense, htotalPrice);
+                            Console.WriteLine("Next truck will be added: " + hc);
+                            truckList.Add(hc);
                             break;
-                        default:
-                           break;
                     }
-                    Console.WriteLine(carList);
+                    cars.Add(newCar);
                     Console.ReadLine();
-                    break;
+                    goto start;
 
                 case 2:
-                    OrderCar();
-                    //carList.Add();
-                    break;
+                    cars.Sum(x => x.Price);
+                    goto start;
                 case 3:
-                    SimpleCar.GetAllCars();
+                    foreach (var car in cars)
+                    {
+                        Console.WriteLine(car.GetInfo());
+                    }
+                    
+                    goto start;
+                case 4:
                     break;
                 default:
-                    break;
+                    goto start;
             }
-            //var sedan = new SimpleCar().CreateNewCar();
-
-            
-            
-
-            ////var taxi = new List<Car> {coupe1, sedan, lt, maz};
-            //foreach (var car in taxi)
-            //{
-            //    Console.WriteLine(car+" ");
-            //}
-            //Console.ReadKey();
         }
-
-
     }
 
+    public interface ITax
+    {
+
+    }
 }
 

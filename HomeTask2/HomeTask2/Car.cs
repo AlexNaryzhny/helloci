@@ -11,12 +11,18 @@ namespace HomeTask2
     {
         public string model;
         public int expense;       //расход
-        public int price;         //стоимость
+        public int Price { get; set; }         //стоимость
         public string fuel;
 
-        public override string ToString()
+        public virtual string GetInfo()
         {
             return "The car: " + model +", fuel: "+fuel+", expense: "+ expense +" l/km, price: " + price + "$";
+        }
+
+        public interface ICar
+        {
+            int Price { get; }
+            string GetInfo();
         }
     }
 }

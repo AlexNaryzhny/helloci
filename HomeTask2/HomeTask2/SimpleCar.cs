@@ -1,39 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    class SimpleCar : Car
+    public class SimpleCar : Car, Car.ICar
     {
-        public double Countofdoors;
+        private double Countofdoors;
 
-        public SimpleCar(double doors_, string name, string tank, int totalPrice, int fuelExpense)
+        public SimpleCar(double doors, string name, string tank, int fuelExpense, int totalPrice)
         {
-            this.Countofdoors = doors_;
-            this.price = totalPrice;
-            this.fuel = tank;
-            this.expense = fuelExpense;
-            this.model = name;
+            Countofdoors = doors;
+            price = totalPrice;
+            fuel = tank;
+            expense = fuelExpense;
+            model = name;
         }
 
-        public SimpleCar Sc1 = new SimpleCar(2, "toyota", "petrol", 10000, 5);
-
-        //public static List<Car> SimpleCarsList = new List<Car>
-        //{
-        //    SimpleCarsList.Add(Sc1)
-        //};
-
-        public static Car GetAllCars()
+        public List<SimpleCar> GenerateCarsList()
         {
-            return ;
+            var carList = new List<SimpleCar>
+            {
+                new SimpleCar(2, "toyota", "petrol", 10000, 5),
+                new SimpleCar(4, "mercedes", "diesel", 12000, 12),
+                new SimpleCar(4, "bmw", "petrol", 20000, 16),
+                new SimpleCar(5, "renault", "gas", 15000, 20)
+            };
+            return carList;
+        }
+        
+        public void TotalPrice(List<SimpleCar> carlist)
+        {
+            foreach (var car in carlist)
+            {
+                
+            }
         }
 
-        public override string ToString()
+        public virtual string GetInfo()
         {
-            return "The car: " + model +", fuel: "+fuel+", doors: "+Countofdoors+", expense: "+ expense +" l/km, price: " + price + "$";
+            return "Car - model: " + model +", fuel: "+fuel+", doors: "+Countofdoors+", expense: "+ expense +" l/km, price: " + price + "$";
         }
 
     }

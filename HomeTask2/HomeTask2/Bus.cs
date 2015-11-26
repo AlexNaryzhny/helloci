@@ -6,35 +6,34 @@ using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    class Bus : Car
+    public class Bus : BaseCar, BaseCar.ICar
     {
         private int Passengers;
 
-        public Bus AddNewBus(int passengers, string name, string tank, int fuelExpense, int totalPrice)
+        public Bus(int passengers, string name, string tank, int fuelExpense, int totalPrice)
         {
             Passengers = passengers;
-            price = totalPrice;
+            Price = totalPrice;
             fuel = tank;
             expense = fuelExpense;
             model = name;
-            return this;
         }
 
-        public List<Bus> GenerateBusList()
+        public static List<BaseCar.ICar> GenerateBusList()
         {
-            var busList = new List<Bus>
+            var busList = new List<BaseCar.ICar>
             {
-                new Bus().AddNewBus(20, "mercedes", "petrol", 17000, 10),
-                new Bus().AddNewBus(40, "neoplan", "diesel", 230000, 20),
-                new Bus().AddNewBus(15, "vw", "petrol", 29000, 8),
-                new Bus().AddNewBus(7, "nissan", "gas", 25000, 9)
+                new Bus(20, "mercedes", "petrol", 10, 17000),
+                new Bus(40, "neoplan", "disel", 20, 230000),
+                new Bus(15, "vw", "petrol", 8, 29000),
+                new Bus(7, "nissan", "gas", 9, 25000)
             };
             return busList;
         }
 
         public virtual string GetInfo()
         {
-            return "Bus - model: " + model + ", fuel: " + fuel + ", passenger seats: " + Passengers + ", expense: " + expense + " l/km, price: " + price + "$";
+            return "Bus - model: " + model + ", fuel: " + fuel + ", passenger seats: " + Passengers + ", expense: " + expense + " l/km, price: " + Price + "$";
         }
     }
 }

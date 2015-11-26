@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bus.cs" />
-    <Compile Include="Car.cs" />
+    <Compile Include="BaseCar.cs" />
     <Compile Include="SimpleCar.cs" />
     <Compile Include="Taxopark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

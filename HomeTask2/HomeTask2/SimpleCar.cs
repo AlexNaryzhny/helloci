@@ -7,42 +7,35 @@ using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    public class SimpleCar : Car, Car.ICar
+    public class SimpleCar : BaseCar, BaseCar.ICar
     {
         private double Countofdoors;
 
         public SimpleCar(double doors, string name, string tank, int fuelExpense, int totalPrice)
         {
             Countofdoors = doors;
-            price = totalPrice;
+            Price = totalPrice;
             fuel = tank;
             expense = fuelExpense;
             model = name;
         }
 
-        public List<SimpleCar> GenerateCarsList()
+        public static List<BaseCar.ICar> GenerateCarsList()
         {
-            var carList = new List<SimpleCar>
+            var carList = new List<BaseCar.ICar>
             {
-                new SimpleCar(2, "toyota", "petrol", 10000, 5),
-                new SimpleCar(4, "mercedes", "diesel", 12000, 12),
-                new SimpleCar(4, "bmw", "petrol", 20000, 16),
-                new SimpleCar(5, "renault", "gas", 15000, 20)
+                new SimpleCar(2, "toyota", "petrol", 5, 10000),
+                new SimpleCar(4, "mercedes", "disel", 12, 12000),
+                new SimpleCar(4, "bmw", "petrol", 16, 20000),
+                new SimpleCar(5, "renault", "gas", 20, 15000)
             };
             return carList;
         }
-        
-        public void TotalPrice(List<SimpleCar> carlist)
-        {
-            foreach (var car in carlist)
-            {
-                
-            }
-        }
 
+       
         public virtual string GetInfo()
         {
-            return "Car - model: " + model +", fuel: "+fuel+", doors: "+Countofdoors+", expense: "+ expense +" l/km, price: " + price + "$";
+            return "Car - model: " + model +", fuel: "+fuel+", doors: "+Countofdoors+", expense: "+ expense +" l/km, price: " + Price + "$";
         }
 
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HomeTask2
 {
-    public class Car
+    public class BaseCar
     {
         public string model;
         public int expense;       //расход
@@ -16,7 +16,7 @@ namespace HomeTask2
 
         public virtual string GetInfo()
         {
-            return "The car: " + model +", fuel: "+fuel+", expense: "+ expense +" l/km, price: " + price + "$";
+            return "The car: " + model +", fuel: "+fuel+", expense: "+ expense +" l/km, price: " + Price + "$";
         }
 
         public interface ICar

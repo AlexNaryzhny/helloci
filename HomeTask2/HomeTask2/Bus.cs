@@ -14,9 +14,9 @@ namespace HomeTask2
         {
             Passengers = passengers;
             Price = totalPrice;
-            fuel = tank;
-            expense = fuelExpense;
-            model = name;
+            Fuel = tank;
+            Expense = fuelExpense;
+            Model = name;
         }
 
         public static List<BaseCar.ICar> GenerateBusList()
@@ -33,7 +33,7 @@ namespace HomeTask2
 
         public virtual string GetInfo()
         {
-            return "Bus - model: " + model + ", fuel: " + fuel + ", passenger seats: " + Passengers + ", expense: " + expense + " l/km, price: " + Price + "$";
+            return "Bus - model: " + Model + ", fuel: " + Fuel + ", passenger seats: " + Passengers + ", expense: " + Expense + " l/km, price: " + Price + "$";
         }
     }
 }

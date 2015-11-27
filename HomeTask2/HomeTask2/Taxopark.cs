@@ -43,13 +43,14 @@ namespace HomeTask2
             {
             Console.WriteLine("*************************************************************************************************");
             Console.WriteLine();
-            Console.WriteLine("To add a new car enter 1, to see the total price of taxopark enter 2, to see all cars in Taxopark enter 3, to Exit 4:");
+            Console.WriteLine("To add a new car enter 1, to see the total price of taxopark enter 2, to see all cars in Taxopark enter 3, to find some car enterr 4, to Exit 5 (number only):");
             int ch = Convert.ToInt32(Console.ReadLine());
-            
+
                 switch (ch)
                 {
                     case 1:
-                        Console.WriteLine("What kind of car did you want to add: 1 - simple, 2 - bus, 3 - truck, 4 - exit");
+                        Console.WriteLine(
+                            "What kind of car did you want to add: 1 - simple, 2 - bus, 3 - truck, 4 - exit");
                         int nc = Convert.ToInt32(Console.ReadLine());
                         switch (nc)
                         {
@@ -72,7 +73,7 @@ namespace HomeTask2
 
                     case 2:
                         var total = cars.Sum(x => x.Price);
-                        Console.WriteLine("Total price: "+total);
+                        Console.WriteLine("Total price: " + total+"$");
                         break;
                     case 3:
                         foreach (var car in cars)
@@ -80,13 +81,35 @@ namespace HomeTask2
                             Console.WriteLine(car.GetInfo());
                         }
                         break;
+
                     case 4:
+                        Console.WriteLine("What did you want to search: 1-model, 2-fuel, 3-price,4-expense, 5-EXIT");
+                        int f = Convert.ToInt32(Console.ReadLine());
+                        switch (f)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter search criteria: ");
+                                FindModel(cars);
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter search criteria: ");
+                                FindFuel(cars);
+                                break;
+                            case 3:
+                                Console.WriteLine("Enter search criteria: ");
+                                FindPrice(cars);
+                                break;
+                            case 4:
+                                Console.WriteLine("Enter search criteria: ");
+                                FindExpense(cars);
+                                break;
+                            case 5:
+                                return;
+                        }
+
+                        break;
+                    case 5:
                         return;
-                    default:
-                       char n = (char)Console.Read();
-                       Console.WriteLine("You enter - " + n);
-                       break;
-                        
                 }
             }
 
@@ -107,7 +130,6 @@ namespace HomeTask2
             int stotalPrice = Convert.ToInt32(Console.ReadLine());
             return new SimpleCar(sdoors, sname, stank, sfuelExpense, stotalPrice);
         }
-
         public static Bus AddNewBus()
         {
             Console.WriteLine("Enter parameters for the new Bus:");
@@ -123,7 +145,6 @@ namespace HomeTask2
             int btotalPrice = Convert.ToInt32(Console.ReadLine());
             return new Bus(bpassengers, bname, btank, bfuelExpense, btotalPrice);
         }
-
         public static HeavyCar AddNewTruck()
         {
             Console.WriteLine("Enter parameters for the new Heavy Car:");
@@ -139,7 +160,6 @@ namespace HomeTask2
             int htotalPrice = Convert.ToInt32(Console.ReadLine());
             return new HeavyCar(hweight, hname, htank, hfuelExpense, htotalPrice);
         }
-
         public static List<BaseCar.ICar> GenerateCars()
         {
             List<BaseCar.ICar> carsL = new List<BaseCar.ICar>();
@@ -157,6 +177,55 @@ namespace HomeTask2
             }
 
             return carsL;
+        }
+
+        public static void FindModel(List<BaseCar.ICar> cars)
+        {
+            string s = Convert.ToString(Console.ReadLine());
+            int counter = cars.Count;
+            for (int i = 0; i < counter; i++)
+            {
+                if (cars[i].Model.Contains(s))
+                {
+                    Console.WriteLine("Result: " + cars[i].GetInfo());
+                }
+            }
+        }
+        public static void FindFuel(List<BaseCar.ICar> cars)
+        {
+            string s = Convert.ToString(Console.ReadLine());
+            int counter = cars.Count;
+            for (int i = 0; i < counter; i++)
+            {
+                if (cars[i].Fuel.Contains(s))
+                {
+                    Console.WriteLine("Result: " + cars[i].GetInfo());
+                }
+            }
+        }
+        public static void FindPrice(List<BaseCar.ICar> cars)
+        {
+            int s = Convert.ToInt32(Console.ReadLine());
+            int counter = cars.Count;
+            for (int i = 0; i < counter; i++)
+            {
+                if (cars[i].Price.Equals(s))
+                {
+                    Console.WriteLine("Result: " + cars[i].GetInfo());
+                }
+            }
+        }
+        public static void FindExpense(List<BaseCar.ICar> cars)
+        {
+            int s = Convert.ToInt32(Console.ReadLine());
+            int counter = cars.Count;
+            for (int i = 0; i < counter; i++)
+            {
+                if (cars[i].Expense.Equals(s))
+                {
+                    Console.WriteLine("Result: " + cars[i].GetInfo());
+                }
+            }
         }
     }
 }

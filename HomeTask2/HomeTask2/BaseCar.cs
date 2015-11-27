@@ -9,19 +9,22 @@ namespace HomeTask2
 {
     public class BaseCar
     {
-        public string model;
-        public int expense;       //расход
-        public int Price { get; set; }         //стоимость
-        public string fuel;
+        public string Model { get; set; }
+        public int Expense { get; set; }
+        public int Price { get; set; }
+        public string Fuel { get; set; }
 
         public virtual string GetInfo()
         {
-            return "The car: " + model +", fuel: "+fuel+", expense: "+ expense +" l/km, price: " + Price + "$";
+            return "The car: " + Model +", fuel: "+Fuel+", expense: "+ Expense +" l/km, price: " + Price + "$";
         }
 
         public interface ICar
         {
+            string Model { get; }
+            int Expense { get; }
             int Price { get; }
+            string Fuel { get; }
             string GetInfo();
         }
     }

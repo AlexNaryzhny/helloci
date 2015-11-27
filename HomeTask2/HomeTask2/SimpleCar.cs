@@ -15,9 +15,9 @@ namespace HomeTask2
         {
             Countofdoors = doors;
             Price = totalPrice;
-            fuel = tank;
-            expense = fuelExpense;
-            model = name;
+            Fuel = tank;
+            Expense = fuelExpense;
+            Model = name;
         }
 
         public static List<BaseCar.ICar> GenerateCarsList()
@@ -35,7 +35,7 @@ namespace HomeTask2
        
         public virtual string GetInfo()
         {
-            return "Car - model: " + model +", fuel: "+fuel+", doors: "+Countofdoors+", expense: "+ expense +" l/km, price: " + Price + "$";
+            return "Car - model: " + Model + ", fuel: " + Fuel + ", doors: " + Countofdoors + ", expense: " + Expense + " l/km, price: " + Price + "$";
         }
 
     }

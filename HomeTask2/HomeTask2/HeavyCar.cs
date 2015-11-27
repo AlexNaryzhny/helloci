@@ -13,9 +13,9 @@ namespace HomeTask2
         {
             gruzopodemnost = weight;
             Price = totalPrice;
-            fuel = tank;
-            expense = fuelExpense;
-            model = name;
+            Fuel = tank;
+            Expense = fuelExpense;
+            Model = name;
         }
 
       public static List<BaseCar.ICar> GenerateTrucksList()
@@ -32,7 +32,7 @@ namespace HomeTask2
 
       public virtual string GetInfo()
         {
-            return "Truck - model: " + model + ", fuel: " + fuel + ", max weight: " + gruzopodemnost + "t, expense: " + expense + "l/km, price: " + Price + "$";
+            return "Truck - model: " + Model + ", fuel: " + Fuel + ", max weight: " + gruzopodemnost + "t, expense: " + Expense + "l/km, price: " + Price + "$";
         }
     }
 }

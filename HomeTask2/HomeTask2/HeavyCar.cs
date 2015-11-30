@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,8 +19,7 @@ namespace HomeTask2
             Expense = fuelExpense;
             Model = name;
         }
-
-      public static List<BaseCar.ICar> GenerateTrucksList()
+        public static List<BaseCar.ICar> GenerateTrucksList()
         {
             var carList = new List<BaseCar.ICar>
             {
@@ -30,9 +31,10 @@ namespace HomeTask2
             return carList;
         }
 
-      public virtual string GetInfo()
+        public virtual string GetInfo()
         {
             return "Truck - model: " + Model + ", fuel: " + Fuel + ", max weight: " + gruzopodemnost + "t, expense: " + Expense + "l/km, price: " + Price + "$";
         }
     }
 }
+

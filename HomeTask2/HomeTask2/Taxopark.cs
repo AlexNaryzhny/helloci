@@ -34,11 +34,10 @@ namespace HomeTask2
 
         private static void Main()
         {
-            //List<SimpleCar> carList = new SimpleCar().GenerateCarsList();
             List<BaseCar.ICar> cars = new List<BaseCar.ICar>();
             BaseCar.ICar newCar = null;
             cars = GenerateCars();
-
+         
             while (true)
             {
             Console.WriteLine("*************************************************************************************************");
@@ -128,6 +127,7 @@ namespace HomeTask2
             int sfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int stotalPrice = Convert.ToInt32(Console.ReadLine());
+            SimpleCar.WriteToFile(sdoors, sname, stank, sfuelExpense, stotalPrice);
             return new SimpleCar(sdoors, sname, stank, sfuelExpense, stotalPrice);
         }
         public static Bus AddNewBus()
@@ -158,23 +158,14 @@ namespace HomeTask2
             int hfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int htotalPrice = Convert.ToInt32(Console.ReadLine());
+            SimpleCar.WriteToFile(hweight,hname,htank,hfuelExpense,htotalPrice);
             return new HeavyCar(hweight, hname, htank, hfuelExpense, htotalPrice);
         }
         public static List<BaseCar.ICar> GenerateCars()
         {
-            List<BaseCar.ICar> carsL = new List<BaseCar.ICar>();
-            foreach (var truck in HeavyCar.GenerateTrucksList())
-            {
-                carsL.Add(truck);
-            }
-            foreach (var car in SimpleCar.GenerateCarsList())
-            {
-                carsL.Add(car);
-            }
-            foreach (var bus in Bus.GenerateBusList())
-            {
-                carsL.Add(bus);
-            }
+            List<BaseCar.ICar> carsL = HeavyCar.GenerateTrucksList().ToList();
+            carsL.AddRange(SimpleCar.ReadFromFile());
+            carsL.AddRange(Bus.GenerateBusList());
 
             return carsL;
         }

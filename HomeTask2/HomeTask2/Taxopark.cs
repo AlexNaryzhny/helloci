@@ -12,26 +12,6 @@ namespace HomeTask2
 {
     class Taxopark
     {
-        //	Спроектировать объектную модель для заданной предметной области.
-        //    Использовать: классы, наследование, интерфейсы, полиморфизм, инкапсуляция. 
-        //    Каждый класс, метод и переменная должны иметь исчерпывающее смысл название и информативный состав.
-        //    Необходимо точно продумать, какие классы необходимы для решения задачи. 
-        //    Наследование должно применяться только тогда, когда это имеет смысл. 
-        //    Классы должны быть грамотно разложены по пакетам. 
-        //    Работа с консолью или консольное меню должно быть минимальным 
-        //    (только необходимые данные для ввода, выводить только то, что просится в условии задачи). 
-        //    Задание представляет собой какую-то предметную область, в которой требуется выделить необходимую иерархию классов 
-        //    и реализовать ее с помощью ООП (используя наследование, если необходимо или реализовывая интерфейсы). 
-        //    В каждом классе должны быть поля и методы, которые вы посчитаете необходимыми. 
-        //    Программа должна создавать объекты различных классов в выделенной предметной области,
-        //    объединять их в какой-то набор объектов (использовать коллекции). 
-        //    Как правило, задание требует выполнить поиск объектов по заданным критериям.
-        //Определить иерархию легковых автомобилей. 
-        //Создать таксопарк. 
-        //Посчитать стоимость автопарка. 
-        //Провести сортировку автомобилей парка по расходу топлива. 
-        //Найти автомобиль в компании, соответствующий заданному диапазону параметров.
-
         private static void Main()
         {
             List<BaseCar.ICar> cars = new List<BaseCar.ICar>();
@@ -127,7 +107,7 @@ namespace HomeTask2
             int sfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int stotalPrice = Convert.ToInt32(Console.ReadLine());
-            SimpleCar.WriteToFile(sdoors, sname, stank, sfuelExpense, stotalPrice);
+            SimpleCar.WriteToTxtFile(sdoors, sname, stank, sfuelExpense, stotalPrice);
             return new SimpleCar(sdoors, sname, stank, sfuelExpense, stotalPrice);
         }
         public static Bus AddNewBus()
@@ -143,6 +123,7 @@ namespace HomeTask2
             int bfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int btotalPrice = Convert.ToInt32(Console.ReadLine());
+            Bus.BinaryWriteToFile(bpassengers, bname, btank, bfuelExpense, btotalPrice);
             return new Bus(bpassengers, bname, btank, bfuelExpense, btotalPrice);
         }
         public static HeavyCar AddNewTruck()
@@ -158,14 +139,13 @@ namespace HomeTask2
             int hfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int htotalPrice = Convert.ToInt32(Console.ReadLine());
-            SimpleCar.WriteToFile(hweight,hname,htank,hfuelExpense,htotalPrice);
             return new HeavyCar(hweight, hname, htank, hfuelExpense, htotalPrice);
         }
         public static List<BaseCar.ICar> GenerateCars()
         {
             List<BaseCar.ICar> carsL = HeavyCar.GenerateTrucksList().ToList();
-            carsL.AddRange(SimpleCar.ReadFromFile());
-            carsL.AddRange(Bus.GenerateBusList());
+            carsL.AddRange(SimpleCar.ReadFromTxtFile());
+            carsL.AddRange(Bus.BinaryReadFromFile());
 
             return carsL;
         }
@@ -174,13 +154,22 @@ namespace HomeTask2
         {
             string s = Convert.ToString(Console.ReadLine());
             int counter = cars.Count;
-            for (int i = 0; i < counter; i++)
+            try
             {
-                if (cars[i].Model.Contains(s))
+                for (int i = 0; i < counter; i++)
                 {
-                    Console.WriteLine("Result: " + cars[i].GetInfo());
+                    if (cars[i].Model.Contains(s))
+                    {
+                        Console.WriteLine("Result: " + cars[i].GetInfo());
+                    }
                 }
             }
+            catch (BaseCar.ModelNotFoundException ex)
+            {
+                Console.WriteLine("Model not found: {0}", ex);
+                throw;
+            }
+
         }
         public static void FindFuel(List<BaseCar.ICar> cars)
         {

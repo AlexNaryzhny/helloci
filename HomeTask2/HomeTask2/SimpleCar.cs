@@ -33,38 +33,44 @@ namespace HomeTask2
             return carList;
         }
 
-        public static List<ICar> ReadFromFile()
+        public static List<ICar> ReadFromTxtFile()
         {
-            const string dirName = @"D:\";
-            const string fileName = dirName + "Cars.txt";
-            DirectoryInfo dir = new DirectoryInfo(dirName);
+            const string fileName = "Cars.txt";
             List<ICar> carList = new List<ICar>();
-            if (!dir.Exists) dir.Create();
             StreamReader r = new StreamReader(fileName);
-            while (true)
+            try
             {
-                string S = r.ReadLine();
-                if (S == null) break;
-                string[] s = S.Split('\t');
-                string name = s[0];
-                string fuel = s[1];
-                double doors = Convert.ToDouble(s[2]);
-                int expence = Convert.ToInt32(s[3]);
-                int price = Convert.ToInt32(s[4]);
-                carList.Add(new SimpleCar(doors, name, fuel, expence, price));
+                while (true)
+                {
+                    string S = r.ReadLine();
+                    if (S == null) break;
+                    string[] s = S.Split('\t');
+                    string name = s[0];
+                    string fuel = s[1];
+                    double doors = Convert.ToDouble(s[2]);
+                    int expence = Convert.ToInt32(s[3]);
+                    int price = Convert.ToInt32(s[4]);
+                    carList.Add(new SimpleCar(doors, name, fuel, expence, price));
+                }
             }
-            r.Close();
+            catch (FileNotFoundException exception)
+            {
+                Console.WriteLine("File not found: {0}", exception);
+                throw;
+            }
+            finally
+            {
+                r.Close();
+            }
+            
             return carList;
         }
 
-        public static void WriteToFile(double doors, string name, string tank, int fuelExpense, int totalPrice)
+        public static void WriteToTxtFile(double doors, string name, string tank, int fuelExpense, int totalPrice)
         {
-            const string dirName = @"D:\";
-            const string fileName = dirName + "AddCars.txt";
-            DirectoryInfo dir = new DirectoryInfo(dirName);
-            if (!dir.Exists) dir.Create();
-            StreamWriter w = new StreamWriter(fileName, true);	// Открыть файл для записи с дополнением
-            w.WriteLine(name + "\t" + tank + "\t" + fuelExpense + "\t" + totalPrice + "\t" + doors); // \t - табуляция, такая запись даже Excell - ом прочтется
+            const string fileName = "AddCars.txt";
+            StreamWriter w = new StreamWriter(fileName, true);
+            w.WriteLine(name + "\t" + tank + "\t" + fuelExpense + "\t" + totalPrice + "\t" + doors);
             w.Close();
         }
 

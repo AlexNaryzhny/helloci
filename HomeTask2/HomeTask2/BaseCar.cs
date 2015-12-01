@@ -5,8 +5,10 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace HomeTask2
 {
+    [Serializable]
     public class BaseCar
     {
         public string Model { get; set; }
@@ -26,6 +28,10 @@ namespace HomeTask2
             int Price { get; }
             string Fuel { get; }
             string GetInfo();
+        }
+
+        public class ModelNotFoundException : ApplicationException
+        {
         }
     }
 }

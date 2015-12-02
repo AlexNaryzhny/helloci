@@ -21,17 +21,17 @@ namespace HomeTask2
             Model = name;
         }
 
-        public static List<ICar> GenerateCarsList()
-        {
-            var carList = new List<ICar>
-            {
-                new SimpleCar(2, "toyota", "petrol", 5, 10000),
-                new SimpleCar(4, "mercedes", "disel", 12, 12000),
-                new SimpleCar(4, "bmw", "petrol", 16, 20000),
-                new SimpleCar(5, "renault", "gas", 20, 15000)
-            };
-            return carList;
-        }
+        //public static List<ICar> GenerateCarsList()
+        //{
+        //    var carList = new List<ICar>
+        //    {
+        //        new SimpleCar(2, "toyota", "petrol", 5, 10000),
+        //        new SimpleCar(4, "mercedes", "disel", 12, 12000),
+        //        new SimpleCar(4, "bmw", "petrol", 16, 20000),
+        //        new SimpleCar(5, "renault", "gas", 20, 15000)
+        //    };
+        //    return carList;
+        //}
 
         public static List<ICar> ReadFromTxtFile()
         {
@@ -66,11 +66,11 @@ namespace HomeTask2
             return carList;
         }
 
-        public static void WriteToTxtFile(double doors, string name, string tank, int fuelExpense, int totalPrice)
+        public static void WriteToTxtFile(SimpleCar car)
         {
             const string fileName = "AddCars.txt";
             StreamWriter w = new StreamWriter(fileName, true);
-            w.WriteLine(name + "\t" + tank + "\t" + fuelExpense + "\t" + totalPrice + "\t" + doors);
+            w.WriteLine(car.Model + "\t" + car.Fuel + "\t" + car.Expense + "\t" + car.Price + "\t" + car.Countofdoors);
             w.Close();
         }
 

@@ -23,28 +23,27 @@ namespace HomeTask2
             Model = name;
         }
 
-        public static List<ICar> GenerateBusList()
-        {
-            var busList = new List<ICar>
-            {
-                new Bus(20, "mercedes", "petrol", 10, 17000),
-                new Bus(40, "neoplan", "disel", 20, 230000),
-                new Bus(15, "vw", "petrol", 8, 29000),
-                new Bus(7, "nissan", "gas", 9, 25000)
-            };
-            return busList;
-        }
+        //public static List<ICar> GenerateBusList()
+        //{
+        //    var busList = new List<ICar>
+        //    {
+        //        new Bus(20, "mercedes", "petrol", 10, 17000),
+        //        new Bus(40, "neoplan", "disel", 20, 230000),
+        //        new Bus(15, "vw", "petrol", 8, 29000),
+        //        new Bus(7, "nissan", "gas", 9, 25000)
+        //    };
+        //    return busList;
+        //}
 
         public virtual string GetInfo()
         {
             return "Bus - model: " + Model + ", fuel: " + Fuel + ", passenger seats: " + Passengers + ", expense: " + Expense + " l/km, price: " + Price + "$";
         }
 
-        public static void BinaryWriteToFile(int passengers, string name, string tank, int fuelExpense, int totalPrice)
+        public static void BinaryWriteToFile(Bus bus)
         {
-            var bus = new Bus(passengers,name,tank,fuelExpense,totalPrice);
             BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("BusList.dat", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("AddBus.dat", FileMode.OpenOrCreate))
             {
                 try
                 {

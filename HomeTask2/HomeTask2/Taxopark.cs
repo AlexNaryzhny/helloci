@@ -107,8 +107,9 @@ namespace HomeTask2
             int sfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int stotalPrice = Convert.ToInt32(Console.ReadLine());
-            SimpleCar.WriteToTxtFile(sdoors, sname, stank, sfuelExpense, stotalPrice);
-            return new SimpleCar(sdoors, sname, stank, sfuelExpense, stotalPrice);
+            var newCar = new SimpleCar(sdoors, sname, stank, sfuelExpense, stotalPrice);
+            SimpleCar.WriteToTxtFile(newCar);
+            return newCar;
         }
         public static Bus AddNewBus()
         {
@@ -123,8 +124,9 @@ namespace HomeTask2
             int bfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int btotalPrice = Convert.ToInt32(Console.ReadLine());
-            Bus.BinaryWriteToFile(bpassengers, bname, btank, bfuelExpense, btotalPrice);
-            return new Bus(bpassengers, bname, btank, bfuelExpense, btotalPrice);
+            var newBus = new Bus(bpassengers, bname, btank, bfuelExpense, btotalPrice);
+            Bus.BinaryWriteToFile(newBus);
+            return newBus;
         }
         public static HeavyCar AddNewTruck()
         {
@@ -139,11 +141,13 @@ namespace HomeTask2
             int hfuelExpense = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("price: ");
             int htotalPrice = Convert.ToInt32(Console.ReadLine());
-            return new HeavyCar(hweight, hname, htank, hfuelExpense, htotalPrice);
+            HeavyCar newTruck = new HeavyCar(hweight, hname, htank, hfuelExpense, htotalPrice);
+            HeavyCar.SerializeToXmlFile(newTruck);
+            return newTruck;
         }
         public static List<BaseCar.ICar> GenerateCars()
         {
-            List<BaseCar.ICar> carsL = HeavyCar.GenerateTrucksList().ToList();
+            List<BaseCar.ICar> carsL = HeavyCar.DeserializeFromXmlFile();
             carsL.AddRange(SimpleCar.ReadFromTxtFile());
             carsL.AddRange(Bus.BinaryReadFromFile());
 

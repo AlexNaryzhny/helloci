@@ -1,0 +1,6 @@
+D:\helloci\HomeTask2\HomeTask2\bin\Release\HomeTask2.exe.config
+D:\helloci\HomeTask2\HomeTask2\bin\Release\HomeTask2.exe
+D:\helloci\HomeTask2\HomeTask2\bin\Release\HomeTask2.pdb
+D:\helloci\HomeTask2\HomeTask2\obj\Release\Taxopark.csprojResolveAssemblyReference.cache
+D:\helloci\HomeTask2\HomeTask2\obj\Release\HomeTask2.exe
+D:\helloci\HomeTask2\HomeTask2\obj\Release\HomeTask2.pdb

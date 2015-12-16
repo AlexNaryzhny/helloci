@@ -1,0 +1,4 @@
+bmw	disel	4	10	8000
+toyota	petrol	2	8	5000
+vw	gaz	5	12	3500
+ferrari	petrol	2	18	150000

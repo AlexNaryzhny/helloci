@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,32 +11,20 @@ namespace HomeTask2
 {
     public class SimpleCar : BaseCar, BaseCar.ICar
     {
-        private double Countofdoors;
+        private readonly double _countofdoors;
 
         public SimpleCar(double doors, string name, string tank, int fuelExpense, int totalPrice)
         {
-            Countofdoors = doors;
+            _countofdoors = doors;
             Price = totalPrice;
             Fuel = tank;
             Expense = fuelExpense;
             Model = name;
         }
 
-        //public static List<ICar> GenerateCarsList()
-        //{
-        //    var carList = new List<ICar>
-        //    {
-        //        new SimpleCar(2, "toyota", "petrol", 5, 10000),
-        //        new SimpleCar(4, "mercedes", "disel", 12, 12000),
-        //        new SimpleCar(4, "bmw", "petrol", 16, 20000),
-        //        new SimpleCar(5, "renault", "gas", 20, 15000)
-        //    };
-        //    return carList;
-        //}
-
         public static List<ICar> ReadFromTxtFile()
         {
-            const string fileName = "Cars.txt";
+            const string fileName = "D:\\helloci\\HomeTask2\\HomeTask2\\data\\CarsList.txt";
             List<ICar> carList = new List<ICar>();
             StreamReader r = new StreamReader(fileName);
             try
@@ -68,15 +57,15 @@ namespace HomeTask2
 
         public static void WriteToTxtFile(SimpleCar car)
         {
-            const string fileName = "AddCars.txt";
+            const string fileName = "D:\\helloci\\HomeTask2\\HomeTask2\\data\\AddCars.txt";
             StreamWriter w = new StreamWriter(fileName, true);
-            w.WriteLine(car.Model + "\t" + car.Fuel + "\t" + car.Expense + "\t" + car.Price + "\t" + car.Countofdoors);
+            w.WriteLine(car.Model + "\t" + car.Fuel + "\t" + car.Expense + "\t" + car.Price + "\t" + car._countofdoors);
             w.Close();
         }
 
-        public virtual string GetInfo()
+        public override string GetInfo()
         {
-            return "Car - model: " + Model + ", fuel: " + Fuel + ", doors: " + Countofdoors + ", expense: " + Expense + " l/km, price: " + Price + "$";
+            return "Car - model: " + Model + ", fuel: " + Fuel + ", doors: " + _countofdoors + ", expense: " + Expense + " l/km, price: " + Price + "$";
         }
     }
 }

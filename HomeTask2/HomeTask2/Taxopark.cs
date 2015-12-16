@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -14,6 +15,7 @@ namespace HomeTask2
     {
         private static void Main()
         {
+
             List<BaseCar.ICar> cars = new List<BaseCar.ICar>();
             BaseCar.ICar newCar = null;
             cars = GenerateCars();
@@ -22,7 +24,12 @@ namespace HomeTask2
             {
             Console.WriteLine("*************************************************************************************************");
             Console.WriteLine();
-            Console.WriteLine("To add a new car enter 1, to see the total price of taxopark enter 2, to see all cars in Taxopark enter 3, to find some car enterr 4, to Exit 5 (number only):");
+            Console.WriteLine("To add a new car enter 1, " +
+                              "to see the total price of taxopark enter 2, " +
+                              "to see all cars in Taxopark enter 3, " +
+                              "to find some car enterr 4, " +
+                              "to Sort all cars by expense enter 5, " +
+                              "to Exit 6 (number only):");
             int ch = Convert.ToInt32(Console.ReadLine());
 
                 switch (ch)
@@ -88,6 +95,9 @@ namespace HomeTask2
 
                         break;
                     case 5:
+                        SortByExpense(cars);
+                        break;
+                    case 6:
                         return;
                 }
             }
@@ -210,6 +220,16 @@ namespace HomeTask2
                     Console.WriteLine("Result: " + cars[i].GetInfo());
                 }
             }
+        }
+
+        public static void SortByExpense(List<BaseCar.ICar> cars)
+        {
+            Console.WriteLine("All cars sorted by expense: ");
+            var orderedCars = from i in cars
+                                 orderby i.Expense
+                                 select i;
+            foreach (BaseCar.ICar i in orderedCars)
+                Console.WriteLine(i.GetInfo());
         }
     }
 }

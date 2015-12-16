@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ArrayOfHeavyCar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HeavyCar>
+    <Model>volvo</Model>
+    <Expense>50</Expense>
+    <Price>54000</Price>
+    <Fuel>petrol</Fuel>
+    <gruzopodemnost>100</gruzopodemnost>
+  </HeavyCar>
+  <HeavyCar>
+    <Model>mercedes</Model>
+    <Expense>40</Expense>
+    <Price>30000</Price>
+    <Fuel>disel</Fuel>
+    <gruzopodemnost>120</gruzopodemnost>
+  </HeavyCar>
+  <HeavyCar>
+    <Model>cat</Model>
+    <Expense>45</Expense>
+    <Price>41000</Price>
+    <Fuel>petrol</Fuel>
+    <gruzopodemnost>150</gruzopodemnost>
+  </HeavyCar>
+  <HeavyCar>
+    <Model>maz</Model>
+    <Expense>30</Expense>
+    <Price>25000</Price>
+    <Fuel>disel</Fuel>
+    <gruzopodemnost>70</gruzopodemnost>
+  </HeavyCar>
+</ArrayOfHeavyCar>

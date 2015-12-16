@@ -50,9 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="data\BusList.dat" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\AddCars.txt" />
+    <Content Include="data\AddTruck.xml" />
+    <Content Include="data\CarsList.txt" />
+    <Content Include="data\TruckList.xml" />
     <Content Include="Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup />

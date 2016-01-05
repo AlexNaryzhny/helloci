@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -11,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace HomeTask2
 {
-    class Taxopark
+    internal class Taxopark
     {
         private static void Main()
         {
@@ -19,18 +20,20 @@ namespace HomeTask2
             List<BaseCar.ICar> cars = new List<BaseCar.ICar>();
             BaseCar.ICar newCar = null;
             cars = GenerateCars();
-         
+
             while (true)
             {
-            Console.WriteLine("*************************************************************************************************");
-            Console.WriteLine();
-            Console.WriteLine("To add a new car enter 1, " +
-                              "to see the total price of taxopark enter 2, " +
-                              "to see all cars in Taxopark enter 3, " +
-                              "to find some car enterr 4, " +
-                              "to Sort all cars by expense enter 5, " +
-                              "to Exit 6 (number only):");
-            int ch = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(
+                    "*************************************************************************************************");
+                Console.WriteLine();
+                Console.WriteLine("To add a new car enter 1, " +
+                                  "to see the total price of taxopark enter 2, " +
+                                  "to see all cars in Taxopark enter 3, " +
+                                  "to find some car enter 4, " +
+                                  "to Sort all cars by expense enter 5, " +
+                                  "to compare Collections enter 6, " +
+                                  "to Exit 0 (number only):");
+                int ch = Convert.ToInt32(Console.ReadLine());
 
                 switch (ch)
                 {
@@ -59,7 +62,7 @@ namespace HomeTask2
 
                     case 2:
                         var total = cars.Sum(x => x.Price);
-                        Console.WriteLine("Total price: " + total+"$");
+                        Console.WriteLine("Total price: " + total + "$");
                         break;
                     case 3:
                         foreach (var car in cars)
@@ -98,6 +101,25 @@ namespace HomeTask2
                         SortByExpense(cars);
                         break;
                     case 6:
+                        Console.WriteLine(
+                            "Select collection pairs: 1- 'ArrayList vs LinkedList', 2-'Stack vs Queue', 3-'HashTable vs Dictionary', 0 - EXIT");
+                        int c = Convert.ToInt32(Console.ReadLine());
+                        switch (c)
+                        {
+                            case 1:
+                                TestListsCollection();
+                                break;
+                            case 2:
+                                TestStackQueneCollection();
+                                break;
+                            case 3:
+                                TestHashTableDictionaryCollection();
+                                break;
+                            case 0:
+                                return;
+                        }
+                        break;
+                    case 0:
                         return;
                 }
             }
@@ -121,6 +143,7 @@ namespace HomeTask2
             SimpleCar.WriteToTxtFile(newCar);
             return newCar;
         }
+
         public static Bus AddNewBus()
         {
             Console.WriteLine("Enter parameters for the new Bus:");
@@ -138,6 +161,7 @@ namespace HomeTask2
             Bus.BinaryWriteToFile(newBus);
             return newBus;
         }
+
         public static HeavyCar AddNewTruck()
         {
             Console.WriteLine("Enter parameters for the new Heavy Car:");
@@ -155,6 +179,7 @@ namespace HomeTask2
             HeavyCar.SerializeToXmlFile(newTruck);
             return newTruck;
         }
+
         public static List<BaseCar.ICar> GenerateCars()
         {
             List<BaseCar.ICar> carsL = HeavyCar.DeserializeFromXmlFile();
@@ -185,6 +210,7 @@ namespace HomeTask2
             }
 
         }
+
         public static void FindFuel(List<BaseCar.ICar> cars)
         {
             string s = Convert.ToString(Console.ReadLine());
@@ -197,6 +223,7 @@ namespace HomeTask2
                 }
             }
         }
+
         public static void FindPrice(List<BaseCar.ICar> cars)
         {
             int s = Convert.ToInt32(Console.ReadLine());
@@ -209,6 +236,7 @@ namespace HomeTask2
                 }
             }
         }
+
         public static void FindExpense(List<BaseCar.ICar> cars)
         {
             int s = Convert.ToInt32(Console.ReadLine());
@@ -226,10 +254,216 @@ namespace HomeTask2
         {
             Console.WriteLine("All cars sorted by expense: ");
             var orderedCars = from i in cars
-                                 orderby i.Expense
-                                 select i;
+                orderby i.Expense
+                select i;
             foreach (BaseCar.ICar i in orderedCars)
                 Console.WriteLine(i.GetInfo());
+        }
+
+        private static void TestListsCollection()
+        {
+            Random rand = new Random();
+            Stopwatch sw = new Stopwatch();
+            List<int> list1 = new List<int>();
+            List<int> list2 = new List<int>();
+            LinkedList<int> linkedlist1 = new LinkedList<int>();
+            LinkedList<int> linkedlist2 = new LinkedList<int>();
+            int el;
+
+            sw.Reset();
+            Console.Write("Add to List at the front...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                list1.Insert(0, rand.Next());
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+            sw.Reset();
+
+            Console.Write("Search in List...");
+            sw.Start();
+            var res = list1.BinarySearch(50000);
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+            sw.Reset();
+
+            Console.Write("RemoveAt from List at the front...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                el = list1[0];
+                list1.RemoveAt(0);
+                el++;
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks\n");
+
+            //LinkedList
+            sw.Reset();
+            Console.Write("AddFirst to LinkedList...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                linkedlist1.AddFirst(rand.Next());
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+            sw.Reset();
+
+            Console.Write("Search in LinkedList...");
+            sw.Start();
+            var resLl = linkedlist1.Contains(50000);
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+            sw.Reset();
+
+            Console.Write("RemoveFirst from LinkedList...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                el = linkedlist1.First.Value;
+                linkedlist1.RemoveFirst();
+                el++;
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks\n");
+        }
+
+        private static void TestStackQueneCollection()
+        {
+            Random rand = new Random();
+            Stopwatch sw = new Stopwatch();
+            Stack<int> stack = new Stack<int>();
+            Queue<int> queue = new Queue<int>();
+            int el;
+
+            //Stack
+            sw.Reset();
+            Console.Write("Adding to Stack...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                stack.Push(i);
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Search in Stack...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+               var index = stack.Contains(50000);
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Removing from Stack...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                el = stack.Pop();
+                el++;
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks\n");
+            sw.Reset();
+
+            //Queue
+            Console.Write("Add to Queue...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                queue.Enqueue(i);
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Search in Queue...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                queue.Contains(50000);
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Removing from Queue...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                el = queue.Dequeue();
+                el++;
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks\n");
+        }
+
+        private static void TestHashTableDictionaryCollection()
+        {
+            Stopwatch sw = new Stopwatch();
+            Hashtable hash = new Hashtable();
+            Dictionary<int, string> dict = new Dictionary<int, string>();
+
+            //HashTable
+            sw.Reset();
+            Console.Write("Add to Hashtable...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                hash.Add(i, "test");
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Search in Hashtable...");
+            sw.Start();
+            hash.ContainsValue(50000);
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Remove from Hashtable...");
+            sw.Start();
+            for (Int64 i = 0; i < hash.Count; i++)
+            {
+                hash.Remove(i);
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks\n");
+
+            //Dictionary
+            sw.Reset();
+            Console.Write("Add to Dictionary...");
+            sw.Start();
+            for (int i = 0; i < 100000; i++)
+            {
+                dict.Add(i, "test"+i);
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Search in Hashtable...");
+            sw.Start();
+            var res = dict.ContainsValue("test50000");
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
+
+            sw.Reset();
+            Console.Write("Remove from Dictionary...");
+            sw.Start();
+            for (int i = 0; i < dict.Count; i++)
+            {
+                dict.Remove(i);
+            }
+            sw.Stop();
+            Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks\n");
         }
     }
 }

@@ -4,3 +4,4 @@ D:\helloci\HomeTask2\HomeTask2\obj\Debug\Taxopark.csprojResolveAssemblyReference
 D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.exe
 D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.pdb
 D:\helloci\HomeTask2\HomeTask2\obj\Debug\HomeTask2.pdb
+D:\helloci\HomeTask2\HomeTask2\bin\Debug\Newtonsoft.Json.dll

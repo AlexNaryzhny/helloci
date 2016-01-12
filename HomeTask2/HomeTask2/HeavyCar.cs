@@ -35,6 +35,10 @@ namespace HomeTask2
         {
             XmlSerializer serializer = new XmlSerializer(typeof(HeavyCar));
             FileStream fs = new FileStream(@"D:\helloci\HomeTask2\HomeTask2\data\AddTruck.xml", FileMode.OpenOrCreate);
+            if (fs == null)
+            {
+                throw new ArgumentNullException();
+            }
             serializer.Serialize(fs, truck);
             fs.Close();
         }
@@ -45,8 +49,19 @@ namespace HomeTask2
             FileStream fs = new FileStream(@"D:\helloci\HomeTask2\HomeTask2\data\TruckList.xml", FileMode.OpenOrCreate);
             List<HeavyCar> heavyCarList = (List<HeavyCar>)deserializer.Deserialize(fs);
             var truckList = heavyCarList.Cast<ICar>().ToList();
+            if (truckList == null)
+            {
+                throw DeserializeFromXmlFileException();
+            }
             fs.Close();
             return truckList;
+        }
+
+        static Exception DeserializeFromXmlFileException()
+        {
+            string description = "Error when trying to deserializa XML file";
+
+            return new Exception(description);
         }
 
     }

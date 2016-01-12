@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -28,10 +29,6 @@ namespace HomeTask2
             int Price { get; }
             string Fuel { get; }
             string GetInfo();
-        }
-
-        public class ModelNotFoundException : ApplicationException
-        {
         }
     }
 }

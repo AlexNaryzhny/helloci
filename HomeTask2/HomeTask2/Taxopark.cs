@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace HomeTask2
 {
@@ -23,6 +25,7 @@ namespace HomeTask2
 
             while (true)
             {
+                int ch = 0;
                 Console.WriteLine(
                     "*************************************************************************************************");
                 Console.WriteLine();
@@ -32,8 +35,17 @@ namespace HomeTask2
                                   "to find some car enter 4, " +
                                   "to Sort all cars by expense enter 5, " +
                                   "to compare Collections enter 6, " +
+                                  "to work with JSON file enter 7, " +
                                   "to Exit 0 (number only):");
-                int ch = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    ch = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter numbers only.");
+                    Console.ReadKey();
+                }
 
                 switch (ch)
                 {
@@ -114,6 +126,22 @@ namespace HomeTask2
                                 break;
                             case 3:
                                 TestHashTableDictionaryCollection();
+                                break;
+                            case 0:
+                                return;
+                        }
+                        break;
+                    case 7:
+                        Console.WriteLine(
+                            "If you want to print info from JSON file press 1, if you want to add a new record to JSON file press 2, to EXIT press 0");
+                        int choice = Convert.ToInt32(Console.ReadLine());
+                        switch (choice)
+                        {
+                            case 1:
+                                ReadFromJsonFile();
+                                break;
+                            case 2:
+                                AddJsonFile();
                                 break;
                             case 0:
                                 return;
@@ -203,9 +231,9 @@ namespace HomeTask2
                     }
                 }
             }
-            catch (BaseCar.ModelNotFoundException ex)
+            catch (ModelNotFoundException ex)
             {
-                Console.WriteLine("Model not found: {0}", ex);
+                Console.WriteLine((string) "Model not found: {0}", (object) ex);
                 throw;
             }
 
@@ -354,7 +382,7 @@ namespace HomeTask2
             sw.Start();
             for (int i = 0; i < 100000; i++)
             {
-               var index = stack.Contains(50000);
+                var index = stack.Contains(50000);
             }
             sw.Stop();
             Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
@@ -443,7 +471,7 @@ namespace HomeTask2
             sw.Start();
             for (int i = 0; i < 100000; i++)
             {
-                dict.Add(i, "test"+i);
+                dict.Add(i, "test" + i);
             }
             sw.Stop();
             Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks");
@@ -465,6 +493,54 @@ namespace HomeTask2
             sw.Stop();
             Console.WriteLine("  Time used: " + sw.ElapsedTicks + " ticks\n");
         }
+
+        private static void AddJsonFile()
+        {
+            Console.WriteLine("Enter parameters for the new Simple Car:");
+            Console.WriteLine("model: ");
+            string sname = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("how many doors: ");
+            double sdoors = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("fuel: ");
+            string stank = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("fuel expense per km: ");
+            int sfuelExpense = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("price: ");
+            int stotalPrice = Convert.ToInt32(Console.ReadLine());
+            var newCar = new SimpleCar(sdoors, sname, stank, sfuelExpense, stotalPrice);
+            WriteJsonFile(newCar);
+        }
+
+        private static void WriteJsonFile(SimpleCar car)
+        {
+            //Serialize Car object to Json
+            string jsonCar = JsonConvert.SerializeObject(car);
+
+            using (StreamWriter f = File.CreateText("D:\\helloci\\HomeTask2\\HomeTask2\\data\\AddJsonCar.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(f, jsonCar);
+            }
+            Console.WriteLine(jsonCar);
+        }
+
+        private static void ReadFromJsonFile()
+        {
+            using (StreamReader r = new StreamReader("D:\\helloci\\HomeTask2\\HomeTask2\\data\\car.json"))
+            {
+                string json = r.ReadToEnd();
+                dynamic array = JsonConvert.DeserializeObject(json);
+
+                //Display deserialized cars
+                Console.WriteLine(array);
+            }
+        }
+
+    }
+
+    internal class ModelNotFoundException : Exception
+    {
+        
     }
 }
 

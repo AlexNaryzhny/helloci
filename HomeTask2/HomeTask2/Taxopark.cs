@@ -538,6 +538,7 @@ namespace HomeTask2
 
     }
 
+    [Serializable]
     internal class ModelNotFoundException : Exception
     {
         

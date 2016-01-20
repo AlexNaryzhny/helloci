@@ -11,18 +11,25 @@ namespace NUnitTests
     [Description("Testing ADD method")]
     class Sub : BaseTest
     {
-        [SetUp]
-        public void Init()
-        {Console.WriteLine("Test Init");}
+        //[SetUp]
+        //public void Init()
+        //{Console.WriteLine("Test Init");}
 
-        [TearDown]
-        public void Clean()
-        {Console.WriteLine("Test cleanup");}
+        //[TearDown]
+        //public void Clean()
+        //{Console.WriteLine("Test cleanup");}
 
         [Test]
         public void Test1()
         {
-            Assert.That(Calc.Sub(1.0,1.0), Is.EqualTo(0));
+            try
+            {
+                Assert.That(Calc.Sub(1.0,1.0), Is.EqualTo(0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [TestCase(10, 7, ExpectedResult = 3.0)]
@@ -31,36 +38,72 @@ namespace NUnitTests
             return Calc.Sub(a, b);
         }
 
+        //Negative
         [Test]
         public void Test3()
         {
-            var ex = Assert.Throws<NotFiniteNumberException>(() => Calc.Sub("hi", 1.0));
-            Assert.That(ex.Message, Is.EqualTo("Wrong input"));
+            try
+            {
+                Calc.Sub("hi", 1.0);
+            }
+            catch (NotFiniteNumberException)
+            {
+                Console.WriteLine("Wrong input");
+            }
         }
 
+        //Negative
         [Test]
         public void Test4()
         {
-            var ex = Assert.Throws<NotFiniteNumberException>(() => Calc.Sub("123.0", 1.0));
-            Assert.That(ex.Message, Is.EqualTo("Wrong input"));
+            try
+            {
+                Calc.Sub("123.0", 1.0);
+            }
+            catch (NotFiniteNumberException)
+            {
+                Console.WriteLine("Wrong input");
+            }
         }
 
         [Test]
         public void Test5()
         {
-            Assert.That(Calc.Sub(-1.0, 1.0), Is.EqualTo(-2.0));
+            try
+            {
+                Assert.That(Calc.Sub(-1.0, 1.0), Is.EqualTo(-2.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [Test]
         public void Test6()
         {
-            Assert.That(Calc.Sub(0.0, 1.0), Is.EqualTo(-1.0));
+            try
+            {
+                Assert.That(Calc.Sub(0.0, 1.0), Is.EqualTo(-1.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [Test]
         public void Test7()
         {
-            Assert.That(Calc.Sub(1.7E+3, 1.2E+3), Is.EqualTo(500.0));
+            try
+            {
+                Assert.That(Calc.Sub(1.7E+3, 1.2E+3), Is.EqualTo(500.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
+            
         }
     }
 }

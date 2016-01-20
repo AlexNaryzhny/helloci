@@ -20,7 +20,14 @@ namespace NUnitTests
         [Test]
         public void Test1()
         {
-            Assert.That(Calc.Multiply(1.0, 1.0), Is.EqualTo(1));
+            try
+            {
+                Assert.That(Calc.Multiply(1.0, 1.0), Is.EqualTo(1));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [TestCase(10, 7, ExpectedResult = 70)]
@@ -30,27 +37,55 @@ namespace NUnitTests
         }
 
         [Test]
+        public void Test3()
+        {
+            try
+            {
+                Assert.That(Calc.Multiply(-1.0, 1.0), Is.EqualTo(-1.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
+        }
+
+        [Test]
+        public void Test4()
+        {
+            try
+            {
+                Assert.That(Calc.Multiply(-0.0, 1.0), Is.EqualTo(0.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
+        }
+
+        [Test]
         public void Test5()
         {
-            Assert.That(Calc.Multiply(-1.0, 1.0), Is.EqualTo(-1.0));
+            try
+            {
+                Assert.That(Calc.Multiply(0.0, 1.0), Is.EqualTo(0.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [Test]
         public void Test6()
         {
-            Assert.That(Calc.Multiply(-0.0, 1.0), Is.EqualTo(0.0));
-        }
-
-        [Test]
-        public void Test7()
-        {
-            Assert.That(Calc.Multiply(0.0, 1.0), Is.EqualTo(0.0));
-        }
-
-        [Test]
-        public void Test8()
-        {
-            Assert.That(Calc.Multiply(1.7E+3, 1.2E+3), Is.EqualTo(2040000.0));
+            try
+            {
+                Assert.That(Calc.Multiply(1.7E+3, 1.2E+3), Is.EqualTo(2040000.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
     }
 }

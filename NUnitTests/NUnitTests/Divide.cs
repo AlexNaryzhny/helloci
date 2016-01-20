@@ -20,7 +20,14 @@ namespace NUnitTests
         [Test]
         public void Test1()
         {
-            Assert.That(Calc.Divide(1.0, 1.0), Is.EqualTo(1.0));
+            try
+            {
+                Assert.That(Calc.Divide(1.0, 1.0), Is.EqualTo(1.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [TestCase(10, 7, ExpectedResult = 1.4285714285714286)]
@@ -32,31 +39,66 @@ namespace NUnitTests
         [Test]
         public void Test3()
         {
-            Assert.That(Calc.Divide(-1.0, 1.0), Is.EqualTo(-1.0));
+            try
+            {
+                Assert.That(Calc.Divide(-1.0, 1.0), Is.EqualTo(-1.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [Test]
         public void Test4()
         {
-            Assert.That(Calc.Divide(-0.0, 1.0), Is.EqualTo(-0.0));
+            try
+            {
+                Assert.That(Calc.Divide(-0.0, 1.0), Is.EqualTo(-0.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [Test]
         public void Test5()
         {
-            Assert.That(Calc.Divide(0.0, 1.0), Is.EqualTo(0.0));
+            try
+            {
+                Assert.That(Calc.Divide(0.0, 1.0), Is.EqualTo(0.0));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [Test]
         public void Test6()
         {
-            Assert.That(Calc.Divide(1.7E+3, 1.2E+3), Is.EqualTo(1.4166666666666667));
+            try
+            {
+                Assert.That(Calc.Divide(1.7E+3, 1.2E+3), Is.EqualTo(1.4166666666666667));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
 
         [Test]
         public void Test7()
         {
-            Assert.That(Calc.Divide(1.0, 0.0), Is.EqualTo(Double.PositiveInfinity));
+            try
+            {
+                Assert.That(Calc.Divide(1.0, 0.0), Is.EqualTo(Double.PositiveInfinity));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid result of operation");
+            }
         }
     }
 }

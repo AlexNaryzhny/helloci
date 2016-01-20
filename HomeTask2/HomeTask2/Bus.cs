@@ -30,8 +30,9 @@ namespace HomeTask2
 
         public static void BinaryWriteToFile(Bus bus)
         {
+            const string filePath = "@//..//..//..//data//AddBus.dat";
             BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("D:\\helloci\\HomeTask2\\HomeTask2\\data\\AddBus.dat", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 try
                 {
@@ -53,7 +54,8 @@ namespace HomeTask2
 
         public static List<ICar> BinaryReadFromFile()
         {
-            using (FileStream fs = new FileStream("D:\\helloci\\HomeTask2\\HomeTask2\\data\\BusList.dat", FileMode.OpenOrCreate))
+            const string filePath = "@//..//..//..//data//BusList.dat";
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 List<ICar> deserilizeBusList = null;
                 try

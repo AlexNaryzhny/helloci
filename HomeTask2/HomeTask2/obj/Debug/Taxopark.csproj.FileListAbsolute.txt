@@ -4,5 +4,4 @@ D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.exe
 D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.pdb
 D:\helloci\HomeTask2\HomeTask2\obj\Debug\HomeTask2.pdb
 D:\helloci\HomeTask2\HomeTask2\bin\Debug\Newtonsoft.Json.dll
-D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.exe.CodeAnalysisLog.xml
-D:\helloci\HomeTask2\HomeTask2\bin\Debug\HomeTask2.exe.lastcodeanalysissucceeded
+D:\helloci\HomeTask2\HomeTask2\obj\Debug\Taxopark.csprojResolveAssemblyReference.cache

@@ -33,8 +33,9 @@ namespace HomeTask2
 
         public static void SerializeToXmlFile(HeavyCar truck)
         {
+            const string filePath = "@//..//..//..//data//AddTruck.xml";
             XmlSerializer serializer = new XmlSerializer(typeof(HeavyCar));
-            FileStream fs = new FileStream(@"D:\helloci\HomeTask2\HomeTask2\data\AddTruck.xml", FileMode.OpenOrCreate);
+            FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
             if (fs == null)
             {
                 throw new ArgumentNullException();
@@ -45,8 +46,9 @@ namespace HomeTask2
 
         public static List<ICar> DeserializeFromXmlFile()
         {
+            const string filePath = "@//..//..//..//data//TruckList.xml";
             XmlSerializer deserializer = new XmlSerializer(typeof(List<HeavyCar>));
-            FileStream fs = new FileStream(@"D:\helloci\HomeTask2\HomeTask2\data\TruckList.xml", FileMode.OpenOrCreate);
+            FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
             List<HeavyCar> heavyCarList = (List<HeavyCar>)deserializer.Deserialize(fs);
             var truckList = heavyCarList.Cast<ICar>().ToList();
             if (truckList == null)

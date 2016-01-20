@@ -24,9 +24,9 @@ namespace HomeTask2
 
         public static List<ICar> ReadFromTxtFile()
         {
-            const string fileName = "D:\\helloci\\HomeTask2\\HomeTask2\\data\\CarsList.txt";
+            const string filePath = "@//..//..//..//data//CarsList.txt";
             List<ICar> carList = new List<ICar>();
-            StreamReader r = new StreamReader(fileName);
+            StreamReader r = new StreamReader(filePath);
             try
             {
                 while (true)
@@ -57,8 +57,8 @@ namespace HomeTask2
 
         public static void WriteToTxtFile(SimpleCar car)
         {
-            const string fileName = "D:\\helloci\\HomeTask2\\HomeTask2\\data\\AddCars.txt";
-            StreamWriter w = new StreamWriter(fileName, true);
+            const string filePath = "@//..//..//..//data//AddCars.txt";
+            StreamWriter w = new StreamWriter(filePath, true);
             w.WriteLine(car.Model + "\t" + car.Fuel + "\t" + car.Expense + "\t" + car.Price + "\t" + car._countofdoors);
             w.Close();
         }

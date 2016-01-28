@@ -54,7 +54,7 @@ namespace Module5
             NavigateToNewMessage();
             FillInfo();
             SaveAsDraft();
-            NavigateToDraftFolder();
+            NavigateToDraftFolderFromNewMessage();
             Console.WriteLine(VerifyMessageExistInFolder(By.ClassName("b-datalist__body"))
                 ? "Message exist in Draft folder"
                 : "Message not exist in Draft folder");
@@ -133,7 +133,8 @@ namespace Module5
             Console.WriteLine("Click on New message...");
             driver.FindElement(By.XPath("//*[@class='b-toolbar__btn js-shortcut']/span")).Click();
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.FindElement(By.ClassName("b-compose")));
+            wait.Until(d => d.FindElement(By.XPath("//label[text() = 'Кому']")));
+            Thread.Sleep(600);
         }
 
         public static void FillInfo()
@@ -141,6 +142,7 @@ namespace Module5
             Console.WriteLine("Filling the text fields...");
             var toField =
                 driver.FindElement(By.XPath("//*[@id='compose__header__content']/div[2]/div[2]/div[1]/textarea[2]"));
+            Thread.Sleep(400);
             toField.SendKeys("aliaksandr_naryzhny@epam.com");
             var themeField =
                 driver.FindElement(
@@ -157,24 +159,17 @@ namespace Module5
         public static void SaveAsDraft()
         {
             Console.WriteLine("Save as Draft message...");
-            ReadOnlyCollection<IWebElement> select =
-                driver.FindElements(By.XPath("//*[@class='b-toolbar__btn__text']"));
-            while (true)
-            {
-                int index = select.Count;
-                for (int i = 0; i < index; )
-                {
-                    if (select[i].Text.ToLower().Equals("сохранить"))
-                    {
-                        select[i].Click();
-                        wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                        wait.Until(d => d.FindElement(By.ClassName("b-toolbar__message")));
-                        break;
-                    }
-                    i++;
-                }
-                break;
-            }
+            driver.FindElement(By.XPath("//span[text() = 'Сохранить']")).Click();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(d => d.FindElement(By.ClassName("b-toolbar__message")));
+        }
+        
+        public static void NavigateToDraftFolderFromNewMessage()
+        {
+            Console.WriteLine("Navigating to Draft folder...");
+            driver.FindElement(By.XPath("//*[@id='b-nav_folders']/div/div[3]/a/span")).Click();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(d => d.FindElement(By.XPath("//span[text() = 'Сохранено в ']")));
         }
 
         public static void NavigateToDraftFolder()
@@ -223,24 +218,9 @@ namespace Module5
         public static void NavigateToSentFolder()
         {
             Console.WriteLine("Navigate to Send folder...");
-            var leftpanel = driver.FindElements(By.ClassName("b-nav__item__text"));
-            while (true)
-            {
-                int counter = leftpanel.Count;
-                for (int i = 0; i < counter; )
-                {
-                    if (leftpanel[i].Text.ToLower().Equals("отправленные"))
-                    {
-                        leftpanel[i].Click();
-                        wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                        wait.Until(d => d.FindElement(By.Id("b-letters")));
-                        break;
-                    }
-
-                    i++;
-                }
-                break;
-            }
+            driver.FindElement(By.XPath("//span[text() = 'Отправленные']")).Click();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(d => d.FindElement(By.Id("b-letters")));
         }
 
         public static void SendMessageFromDraft()
@@ -249,7 +229,7 @@ namespace Module5
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             Thread.Sleep(100);
             Console.WriteLine("Click on Draft...");
-            driver.FindElement(By.XPath("//*[@class='b-datalist__item__addr']")).Click();
+            driver.FindElement(By.XPath(".//div[text()='aliaksandr_naryzhny@epam.com']")).Click();
             Console.WriteLine("Wait...");
             wait.Until(d => d.FindElement(By.XPath("//input[@name='Subject']")));
             Console.WriteLine("Click on Send...");
@@ -280,10 +260,7 @@ namespace Module5
 
         public static void LogOut()
         {
-
             driver.FindElement(By.Id("PH_logoutLink"));
-            //driver.FindElement(By.Id("PH_user-email")).Click();
-            //driver.FindElement(By.XPath("//*[@class='x-ph__auth_list__item__logout js-logout']/span/span")).Click();
         }
 
         [TearDown]

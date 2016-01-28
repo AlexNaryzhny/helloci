@@ -68,6 +68,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.cs" />
+    <Compile Include="LoginPage.cs" />
+    <Compile Include="MainPage.cs" />
+    <Compile Include="NewMailRuTests.cs" />
+    <Compile Include="NewMessagePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMailRu.cs" />
   </ItemGroup>

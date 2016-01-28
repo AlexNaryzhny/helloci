@@ -41,8 +41,10 @@ namespace Module5
         [FindsBy(How = How.Id, Using = "PH_logoutLink")]
         public IWebElement logoutLink;
 
-        [FindsBy(How = How.XPath, Using = ".//div[@class='b-datalist__item__addr'][text()='aliaksandr_naryzhny@epam.com']")]
+        [FindsBy(How = How.XPath, Using = "//div[text()='aliaksandr_naryzhny']")]
         public IWebElement message;
+
+        public string messageXpath = "//div[text()='aliaksandr_naryzhny']";
 
         public MainPage(IWebDriver driver) : base(driver)
         {
@@ -80,12 +82,14 @@ namespace Module5
             Console.WriteLine("Navigate to Draft folder...");
             DraftFolder.Click();
             WaitUntilAvailable(d => d.FindElement(By.Id("b-letters")));
+            Thread.Sleep(500);
             return this;
         }
 
         public MainPage LogOut()
         {
             Console.WriteLine("Logout from mailbox...");
+            HighlightElement(loginEmail);
             logoutLink.Click();
             return this;
         }

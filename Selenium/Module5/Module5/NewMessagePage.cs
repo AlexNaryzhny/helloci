@@ -38,14 +38,18 @@ namespace Module5
             Console.WriteLine("Fill the text fields...");
             Thread.Sleep(400);
             toField.SendKeys("aliaksandr_naryzhny@epam.com");
+            KeyboardSendKeys(Keys.Tab);
             subjectField.SendKeys(subject);
+            KeyboardSendKeys(Keys.Tab);
+            KeyboardSendKeys("test");
+            MouseClick(toField);
             return this;
         }
 
         public NewMessagePage SendMessage()
         {
             Console.WriteLine("Click on Send button...");
-            bodyField.SendKeys("test");
+            Thread.Sleep(300);
             sendButton.Click();
             WaitUntilAvailable(d => d.FindElement(By.XPath("//*[@id='b-compose__sent']/div/div[1]/div")));
             return this;
@@ -55,13 +59,14 @@ namespace Module5
         {
             Console.WriteLine("Click on Save button...");
             saveAsDraftButton.Click();
-            WaitUntilAvailable(d => d.FindElement(By.XPath("//span[text() = 'Сохранено в ']")));             //"//*[@class='b-toolbar__message']")));
+            WaitUntilAvailable(d => d.FindElement(By.XPath("//span[text() = 'Сохранено в ']")));
             return this;
         }
 
         public MainPage NavigateToDraft()
         {
             Console.WriteLine("Navigate to Draft folder...");
+            Thread.Sleep(200);
             DraftFolder.Click();
             WaitUntilAvailable(d => d.FindElement(By.Id("b-letters")));
             return new MainPage(Driver);

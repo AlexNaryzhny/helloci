@@ -20,8 +20,8 @@ namespace Module6
     {
         protected static IWebDriver Driver;
         public static string Url = ConfigurationSettings.AppSettings["url"];
-
-
+        private static readonly string driverPath = ConfigurationSettings.AppSettings["driverPath"];
+        
         protected BasePage(IWebDriver driver)
         {
             Driver = driver;
@@ -30,7 +30,6 @@ namespace Module6
 
         public static IWebDriver InitDriver(IWebDriver driver)
         {
-            const string driverPath = "@//..//..//..//WebDriver";
             driver = new ChromeDriver(driverPath);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(100));

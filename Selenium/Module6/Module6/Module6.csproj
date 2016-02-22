@@ -65,13 +65,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="driver\Decorator\Decorator.cs" />
-    <Compile Include="driver\Decorator\DecoratorTest.cs" />
-    <Compile Include="driver\Factory\ChromeDriverCreator.cs" />
-    <Compile Include="driver\Factory\FactoryTest.cs" />
-    <Compile Include="driver\Factory\WebDriverCreator.cs" />
-    <Compile Include="driver\Singleton\SingletonTest.cs" />
-    <Compile Include="driver\Singleton\WebDriverSingleton.cs" />
+    <Compile Include="Patterns\Decorator\Decorator.cs" />
+    <Compile Include="Patterns\Decorator\DecoratorTest.cs" />
+    <Compile Include="Patterns\Factory\ChromeDriverCreator.cs" />
+    <Compile Include="Patterns\Factory\FactoryTest.cs" />
+    <Compile Include="Patterns\Factory\WebDriverCreator.cs" />
+    <Compile Include="Patterns\Singleton\SingletonTest.cs" />
+    <Compile Include="Patterns\Singleton\WebDriverSingleton.cs" />
     <Compile Include="Helpers\Verifier.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />

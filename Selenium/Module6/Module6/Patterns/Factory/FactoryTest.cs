@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Module6.driver.Singleton;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Module6.driver.Factory
